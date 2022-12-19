@@ -3,16 +3,21 @@ public class Account {
  private  double currentMoney = 0;
  private int accountNumber = 12369;
     public Account() {
-
     }
 
-    public double getCurrentMoney() {
-        return currentMoney;
-    }
 
     public void setCurrentMoney(double currentMoney) {
         this.currentMoney = currentMoney;
     }
+
+    public Account(int accountNumber) {
+        this.currentMoney = 0;
+        this.accountNumber = accountNumber;
+    }
+    public double getCurrentMoney() {
+        return currentMoney;
+    }
+
 
     public int getAccountNumber() {
         return accountNumber;
@@ -22,17 +27,23 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    public Account(double money, int account) {
-        this.currentMoney = money;
-        this.accountNumber = account;
-    }
 
-    public void ingreso(int bankAccount,int quantity){
+//meter dinero
+    public void ingreso(int quantity){
+        System.out.println("ingreso de " + quantity + "$");
         currentMoney= currentMoney+quantity;
+
+    }
+    public void transferencia(int quantity, Account account){
+        System.out.println("transferencia de " + quantity + "$  a la cuenta : " + account.accountNumber  );
+        currentMoney= currentMoney-quantity;
+        account.currentMoney += quantity;
+
 
     }
 
     public double reintegro(int quantity){
+        System.out.println("dinero sacado :" + quantity);
          currentMoney = currentMoney- quantity;
 
         return currentMoney;
@@ -40,9 +51,13 @@ public class Account {
 
     }
 
-    public  double tranferencia(double money, int account){
-        currentMoney = currentMoney - money;
 
-        return currentMoney;
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "currentMoney=" + currentMoney +
+                ", accountNumber=" + accountNumber +
+                '}';
     }
 }
